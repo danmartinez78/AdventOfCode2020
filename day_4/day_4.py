@@ -84,10 +84,8 @@ for passport in valid_array:
                 has_pid = True
     if has_byr and has_iyr and has_eyr and has_hgt and has_hcl and has_ecl and has_pid:
         valid_passports += 1
-        print('GOOD', passport,'\n', has_byr, has_ecl, has_eyr, has_hcl, has_hgt, has_iyr, has_pid, '\n')
+        # print('GOOD', passport,'\n', has_byr, has_ecl, has_eyr, has_hcl, has_hgt, has_iyr, has_pid, '\n')
     else:
-        print('BAD', passport,'\n', has_byr, has_ecl, has_eyr, has_hcl, has_hgt, has_iyr, has_pid, '\n')
+        # print('BAD', passport,'\n', has_byr, has_ecl, has_eyr, has_hcl, has_hgt, has_iyr, has_pid, '\n')
+        pass
 print(valid_passports)
-
-
-
