@@ -1,6 +1,9 @@
+import time
+
 input_file = open('input.txt', 'r')
 rules = input_file.read().split('\n')
 
+start_time = time.time()
 # part 1
 def check_bag(bags, bag, d = 0):
     #print(d, bag)
@@ -14,7 +17,7 @@ def check_bag(bags, bag, d = 0):
         return False   
 # part 2
 def sum_bags(bags, bag, d = 0, count = 0):
-    print(d, bag, count)
+    # print(d, bag, count)
     color = bag[0]
     amt = bag[1]
     if len(bags[color]) == 0:
@@ -44,8 +47,9 @@ for rule in rules:
             amt = int(content[1])
             color = content[2] + ' ' + content[3]
             bags[bag].append((color, amt))
-for key in bags.keys():
-    print(key, ':', bags[key])
+
+# for key in bags.keys():
+#     print(key, ':', bags[key])
 
 count = 0
 for bag in bags.keys():
@@ -56,3 +60,4 @@ for bag in bags.keys():
 
 print(count)
 print(sum_bags(bags, ('shiny gold', 1), 0, 0)-1)
+print('time taken:', time.time() - start_time)
