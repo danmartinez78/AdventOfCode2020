@@ -1,6 +1,7 @@
 import numpy as np
 import copy
 import time
+import matplotlib.pyplot as plt
 
 def read_seats(fn):
     input_file = open(fn, 'r')
@@ -40,6 +41,14 @@ def test_seats(seats, part, num):
         print(str(num), 'fail')
         print_seats(test)
         print_seats(seats)
+
+def display_seats(seats):
+    rows, cols = seats.shape
+    plt.figure(figsize=(rows,cols))
+    plt.imshow(seats)
+    plt.show()
+    wait = input()
+
 
 # part 1
 
