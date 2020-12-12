@@ -83,8 +83,6 @@ for command in commands:
     cmd = command[0]
     value = int(command[1:])
     i += 1
-    print(pos, wp)
-    print(i, ':', cmd, value)
     if cmd == 'F':
         pos = move_to_wp(pos, wp, value)
     elif cmd == 'R':
@@ -93,7 +91,6 @@ for command in commands:
         wp, pos = rot_wp(wp, -value)
     else:
         wp = move_wp(wp, cmd, value)
-    print(pos, wp, '\n')
 
 print(pos, dist)
 print(abs(pos[0]-pos[2])+abs(pos[1]-pos[3]))
