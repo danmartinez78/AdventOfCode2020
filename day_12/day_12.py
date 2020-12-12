@@ -1,4 +1,6 @@
 import time
+from collections import deque
+import numpy as np
 input_file = open('input.txt', 'r')
 commands = input_file.read().split('\n')
 
@@ -47,3 +49,53 @@ for command in commands:
         x,y = move(x, y, cmd, value)
 dist = abs(y) + abs(x)
 print(y, x, dist)
+
+# prt 2
+
+def move_wp(wp, direction, value):
+    if direction == 'E':
+        wp[0] += value
+    elif direction == 'S':
+        wp[1] += value
+    elif direction == 'W':
+        wp[2] += value
+    elif direction == 'N':
+        wp[3] += value
+    return wp
+
+def rot_wp(wp, value):
+    # shift direction array value/90 times fwd or back
+    shift = int(value/90)
+    wp.rotate(shift)
+    return wp, pos
+
+def move_to_wp(pos,wp,N):
+    for i in range(N):
+        pos += np.asarray(wp)
+    return deque(pos)
+
+wp = deque([10,0,0,1])
+pos = deque([0,0,0,0])
+directions = ['E', 'S', 'W', 'N']
+
+i = 0
+for command in commands:
+    cmd = command[0]
+    value = int(command[1:])
+    i += 1
+    print(pos, wp)
+    print(i, ':', cmd, value)
+    if cmd == 'F':
+        pos = move_to_wp(pos, wp, value)
+    elif cmd == 'R':
+        wp, pos = rot_wp(wp, value)
+    elif cmd == 'L':
+        wp, pos = rot_wp(wp, -value)
+    else:
+        wp = move_wp(wp, cmd, value)
+    print(pos, wp, '\n')
+
+print(pos, dist)
+print(abs(pos[0]-pos[2])+abs(pos[1]-pos[3]))
+
+
